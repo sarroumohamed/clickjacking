@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ابن بطوطة للبصريات — Ibn Batouta Optique</title>
-<meta name="description" content="ابن بطوطة للبصريات — رؤية أوضح، اختيار أفضل. قياس النظر، النظارات، والعدسات اللاصقة.">
+<title>Tap NFC — بطاقات NFC ذكية | Tanger</title>
+<meta name="description" content="Tap NFC — بطاقات NFC ذكية تشارك معلوماتك بلمسة واحدة. بطاقات أعمال، مراجعة جوجل، منيو رقمي. طنجة، المغرب.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -15,11 +15,11 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 /* ============================================================
-   2. OPTICAL BRAND THEME
+   2. NFC BRAND THEME
    ============================================================ */
 :root{
-  /* ==== BRAND — medical optical teal + cyan ==== */
-  --brand:        #0891b2;   /* cyan teal  */
+  /* ==== BRAND — tech teal + cyan ==== */
+  --brand:        #0891b2;
   --brand-dark:   #0e7490;
   --brand-light:  #67e8f9;
   --brand-soft:   #cffafe;
@@ -133,14 +133,7 @@ a,button{-webkit-tap-highlight-color:transparent}
   height:220px;
   background:
     linear-gradient(135deg, rgba(8,145,178,.82), rgba(6,182,212,.65)),
-    url('Cover.png') center/cover;
-  background-blend-mode:multiply;
-}
-/* Fallback remote cover if local file missing */
-.cover.no-local{
-  background:
-    linear-gradient(135deg, rgba(8,145,178,.82), rgba(6,182,212,.65)),
-    url('https://picsum.photos/id/1052/1400/700') center/cover;
+    url('Cover.webp') center/cover;
   background-blend-mode:multiply;
 }
 .cover::after{
@@ -174,7 +167,6 @@ html[dir="rtl"] .store-logo{padding:8px 8px 8px 16px}
   overflow:hidden;
 }
 .store-logo .mark img{width:100%;height:100%;object-fit:cover;border-radius:10px}
-.store-logo .mark svg{width:19px;height:19px;fill:#fff}
 
 /* Status */
 .status{
@@ -236,7 +228,7 @@ html[dir="rtl"] .store-logo{padding:8px 8px 8px 16px}
 .title{
   display:inline-block;margin-top:8px;
   padding:5px 15px;border-radius:99px;
-  font-size:.72rem;font-weight:800;letter-spacing:.8px;
+  font-size:.72rem;font-weight:800;letter-spacing:.4px;
   color:var(--brand-dark);
   background:var(--brand-soft);
   border:1px solid rgba(8,145,178,.22);
@@ -418,10 +410,6 @@ html[dir="rtl"] .action-btn .arrow svg{transform:scaleX(-1)}
   --brand:#25d366;--brand-glow:#25d366;
   --brand-bg:linear-gradient(135deg,#4ade80 0%,#16a34a 100%);
 }
-.b-mail{
-  --brand:#ef4444;--brand-glow:#ef4444;
-  --brand-bg:linear-gradient(135deg,#f87171 0%,#b91c1c 100%);
-}
 .b-ig{
   --brand:#e1306c;--brand-glow:#e1306c;
   --brand-bg:linear-gradient(45deg,
@@ -431,9 +419,13 @@ html[dir="rtl"] .action-btn .arrow svg{transform:scaleX(-1)}
   --brand:#1877f2;--brand-glow:#1877f2;
   --brand-bg:linear-gradient(135deg,#4293ff 0%,#0c5dc7 100%);
 }
+.b-maps{
+  --brand:#ea4335;--brand-glow:#ea4335;
+  --brand-bg:linear-gradient(135deg,#f87171 0%,#dc2626 100%);
+}
 
 /* ============================================================
-   8. LOCATION BLOCK — Map + Directions together
+   8. LOCATION BLOCK
    ============================================================ */
 .location-block{
   margin-top:32px;
@@ -464,26 +456,42 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
   stroke-linecap:round;stroke-linejoin:round;
 }
 
-.map-frame{
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid var(--border);
-  position:relative;
-  background:var(--brand-soft);
+/* City card */
+.loc-card{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 18px;border-radius:18px;
+  background:linear-gradient(135deg,rgba(8,145,178,.10),rgba(6,182,212,.05));
+  border:1px solid rgba(8,145,178,.18);
 }
-.map-frame iframe{
-  display:block;width:100%;height:250px;border:0;
-  filter:saturate(1) contrast(1.02);
+.loc-card .pin{
+  width:46px;height:46px;flex:none;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--brand),var(--accent));
+  box-shadow:0 10px 24px rgba(8,145,178,.38);
+}
+.loc-card .pin svg{
+  width:22px;height:22px;
+  fill:none;stroke:#fff;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.loc-card b{
+  display:block;font-size:1rem;font-weight:900;
+  color:var(--text);line-height:1.3;
+}
+.loc-card small{
+  display:block;font-size:.8rem;font-weight:600;
+  color:var(--muted);margin-top:3px;
 }
 
-.btn-directions{
+/* Directions button */
+.btn-maps{
   position:relative;
   display:flex;align-items:center;justify-content:center;gap:11px;
   width:100%;
   margin-top:14px;
-  padding:18px 24px;
+  padding:17px 24px;
   border-radius:16px;
-  font-size:1rem;font-weight:800;letter-spacing:.2px;
+  font-size:.98rem;font-weight:800;letter-spacing:.2px;
   color:#fff;
   background:linear-gradient(135deg,#f87171 0%,#dc2626 100%);
   box-shadow:
@@ -494,7 +502,7 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
              box-shadow .35s ease,
              filter .25s ease;
 }
-.btn-directions::before{
+.btn-maps::before{
   content:'';position:absolute;inset:0;
   background:linear-gradient(135deg,
     rgba(255,255,255,.22) 0%,
@@ -502,7 +510,7 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
     rgba(0,0,0,.08) 100%);
   z-index:1;pointer-events:none;
 }
-.btn-directions:hover{
+.btn-maps:hover{
   transform:translateY(-4px) scale(1.015);
   box-shadow:
     0 24px 50px -12px #ea4335,
@@ -510,35 +518,15 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
     inset 0 1px 0 rgba(255,255,255,.32);
   filter:brightness(1.07);
 }
-.btn-directions.pressed{animation:pressPop .42s cubic-bezier(.34,1.56,.64,1)}
-.btn-directions.pressed svg{animation:iconPop .45s cubic-bezier(.34,1.56,.64,1)}
-
-.btn-directions svg{
+.btn-maps.pressed{animation:pressPop .42s cubic-bezier(.34,1.56,.64,1)}
+.btn-maps.pressed svg{animation:iconPop .45s cubic-bezier(.34,1.56,.64,1)}
+.btn-maps svg{
   width:20px;height:20px;
   fill:none;stroke:#fff;stroke-width:2.2;
   stroke-linecap:round;stroke-linejoin:round;
   position:relative;z-index:2;
 }
-.btn-directions span{position:relative;z-index:2}
-
-/* Address line under directions */
-.address-line{
-  display:flex;align-items:flex-start;gap:9px;
-  margin-top:14px;
-  padding:12px 14px;
-  border-radius:14px;
-  background:var(--brand-soft);
-  border:1px solid rgba(8,145,178,.16);
-  font-size:.82rem;font-weight:600;
-  color:var(--brand-dark);
-  line-height:1.55;
-}
-.address-line svg{
-  width:16px;height:16px;flex:none;
-  margin-top:3px;
-  fill:none;stroke:var(--brand);stroke-width:2.2;
-  stroke-linecap:round;stroke-linejoin:round;
-}
+.btn-maps span{position:relative;z-index:2}
 
 /* ============================================================
    9. GALLERY — each image on its own line
@@ -784,11 +772,10 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
   .action-btn .txt span{font-size:.72rem}
   .action-btn .txt{max-width:calc(100% - 130px)}
   .location-block{padding:14px}
-  .map-frame iframe{height:220px}
   .gallery a{aspect-ratio:4/3}
   .btn-save{padding:16px 20px;font-size:.95rem}
   .btn-share{padding:16px 20px;font-size:.95rem}
-  .btn-directions{padding:16px 20px;font-size:.95rem}
+  .btn-maps{padding:15px 18px;font-size:.92rem}
   .share-section{padding:22px 18px}
   .lang-switch button{padding:8px 15px;font-size:.75rem}
   .toast{bottom:100px;font-size:.82rem;padding:11px 18px}
@@ -816,42 +803,36 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
     <div class="cover" id="cover">
       <div class="store-logo">
         <span class="mark" id="logoMark">
-          <!-- Fallback SVG glasses icon (used if Logo.png missing) -->
-          <svg viewBox="0 0 24 24">
-            <path d="M2 10a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H6a4 4 0 0 1-4-4v-1z"/>
-            <path d="M22 10a4 4 0 0 0-4-4h-1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h1a4 4 0 0 0 4-4v-1z"/>
-            <path d="M10 11h4"/>
-          </svg>
+          <img src="Logo.webp" alt="Tap NFC Logo">
         </span>
-        <span data-i18n="store">ابن بطوطة للبصريات</span>
+        <span data-i18n="store">Tap NFC</span>
       </div>
 
       <span class="status">
         <span class="pulse"></span>
-        <span data-i18n="status">مفتوح الآن</span>
+        <span data-i18n="status">24/24</span>
       </span>
     </div>
 
     <div class="profile">
       <div class="avatar-wrap">
-        <img class="avatar" src="Logo.png" alt="Ibn Batouta Optique" loading="lazy"
-             onerror="this.src='https://picsum.photos/id/1040/400/400'">
+        <img class="avatar" src="Logo.webp" alt="Tap NFC" loading="lazy">
       </div>
 
-      <h1 class="name" data-i18n="store">ابن بطوطة للبصريات</h1>
-      <p class="title latin" data-i18n="jobTitle">Opticien · Optométriste · Contactologiste</p>
-      <p class="clinic" data-i18n="slogan">رؤية أوضح، اختيار أفضل</p>
+      <h1 class="name" data-i18n="store">Tap NFC</h1>
+      <p class="title" data-i18n="jobTitle">بطاقات NFC · حلول ذكية للأعمال</p>
+      <p class="clinic" data-i18n="slogan">بطاقة واحدة… كل معلوماتك</p>
 
       <p class="tagline" data-i18n="tagline">
-        نضع رؤيتكم في مقدمة اهتمامنا، ونوفر لكم خدمات متخصصة في مجال البصريات، من قياس النظر وتصحيحه إلى اختيار النظارات والعدسات اللاصقة المناسبة، مع جودة عالية وخدمة احترافية.
+        نبيع بطاقات NFC الذكية التي تشارك معلوماتك بلمسة واحدة: بطاقات أعمال، مراجعة جوجل، منيو رقمي، وحسابات التواصل الاجتماعي. جودة عالية، تصميم مخصص، وتوصيل سريع.
       </p>
 
       <div class="specialties">
-        <span data-i18n="spec1">👁️ قياس النظر</span>
-        <span data-i18n="spec2">👓 نظارات طبية</span>
-        <span data-i18n="spec3">🕶️ نظارات شمسية</span>
-        <span data-i18n="spec4">🔵 عدسات لاصقة</span>
-        <span data-i18n="spec5">👶 نظارات الأطفال</span>
+        <span data-i18n="spec1">📇 بطاقات NFC</span>
+        <span data-i18n="spec2">💼 بطاقات أعمال</span>
+        <span data-i18n="spec3">⭐ مراجعة جوجل</span>
+        <span data-i18n="spec4">📱 مشاركة فورية</span>
+        <span data-i18n="spec5">🎨 تصميم مخصص</span>
       </div>
 
       <!-- Hours -->
@@ -860,7 +841,7 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
           <circle cx="12" cy="12" r="10"/>
           <polyline points="12 6 12 12 16 14"/>
         </svg>
-        <span data-i18n="hours">الاثنين – السبت · 10:00 – 20:30</span>
+        <span data-i18n="hours">24/24</span>
       </div>
     </div>
   </header>
@@ -871,64 +852,49 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
   <div class="action-list">
 
     <!-- Call -->
-    <a class="action-btn b-tel" href="tel:0632503821">
+    <a class="action-btn b-tel" href="tel:+212710076434">
       <span class="ico">
         <svg data-stroke viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       </span>
       <span class="txt">
         <b data-i18n="btnCall">اتصل بنا</b>
-        <span class="latin">0632503821</span>
+        <span class="latin">0710076434</span>
       </span>
       <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
     </a>
 
     <!-- WhatsApp -->
-    <a class="action-btn b-wa" href="https://wa.me/212632503821" target="_blank" rel="noopener">
+    <a class="action-btn b-wa" href="https://wa.me/212710076434" target="_blank" rel="noopener">
       <span class="ico">
         <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.02c0-5.19 4.23-9.41 9.42-9.41 2.51 0 4.88.98 6.66 2.76a9.35 9.35 0 0 1 2.76 6.66c0 5.19-4.23 9.42-9.43 9.42zM20.5 3.49A11.8 11.8 0 0 0 12.05 0C5.5 0 .17 5.33.17 11.88c0 2.09.55 4.13 1.59 5.93L.07 24l6.34-1.66a11.85 11.85 0 0 0 5.64 1.44h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.17-1.24-6.15-3.44-8.41z"/></svg>
       </span>
       <span class="txt">
         <b data-i18n="btnWhatsapp">واتساب</b>
-        <span data-i18n="btnWhatsappSub">استفسار سريع · حجز موعد</span>
-      </span>
-      <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
-    </a>
-
-    <!-- Email -->
-    <a class="action-btn b-mail" href="mailto:mopt.ibnbatouta@gmail.com">
-      <span class="ico">
-        <svg data-stroke viewBox="0 0 24 24">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-          <polyline points="22,6 12,13 2,6"/>
-        </svg>
-      </span>
-      <span class="txt">
-        <b data-i18n="btnEmail">البريد الإلكتروني</b>
-        <span class="latin">mopt.ibnbatouta@gmail.com</span>
+        <span data-i18n="btnWhatsappSub">اطلب بطاقتك · استفسار سريع</span>
       </span>
       <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
     </a>
 
     <!-- Instagram -->
-    <a class="action-btn b-ig" href="https://www.instagram.com/optique_ibn_batouta/" target="_blank" rel="noopener">
+    <a class="action-btn b-ig" href="https://www.instagram.com/nfc.4all" target="_blank" rel="noopener">
       <span class="ico">
         <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.85a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
       </span>
       <span class="txt">
         <b>Instagram</b>
-        <span class="latin">@optique_ibn_batouta</span>
+        <span class="latin">@nfc.4all</span>
       </span>
       <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
     </a>
 
     <!-- Facebook -->
-    <a class="action-btn b-fb" href="https://web.facebook.com/p/Ibn-Batouta-Optique-100054318138519/" target="_blank" rel="noopener">
+    <a class="action-btn b-fb" href="https://web.facebook.com/mohamed.sarrou.2025/" target="_blank" rel="noopener">
       <span class="ico">
         <svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
       </span>
       <span class="txt">
         <b>Facebook</b>
-        <span data-i18n="fbPage">ابن بطوطة للبصريات</span>
+        <span data-i18n="fbPage">Tap NFC</span>
       </span>
       <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
     </a>
@@ -936,7 +902,7 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
   </div>
 
   <!-- ==========================================================
-       LOCATION BLOCK — Map + Directions together
+       LOCATION BLOCK — city + map button
        ========================================================== -->
   <div class="location-block reveal">
 
@@ -945,32 +911,29 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
         <circle cx="12" cy="10" r="3"/>
       </svg>
-      <span data-i18n="locationTitle">موقع المتجر</span>
+      <span data-i18n="locationTitle">الموقع</span>
     </h2>
 
-    <div class="map-frame">
-      <iframe
-        src="https://www.google.com/maps?q=33.5731,-7.5898&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Ibn Batouta Optique location"
-        allowfullscreen></iframe>
+    <div class="loc-card">
+      <span class="pin">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </span>
+      <span>
+        <b data-i18n="cityName">طنجة، المغرب</b>
+        <small data-i18n="citySub">التوصيل متاح لجميع المدن</small>
+      </span>
     </div>
 
-    <a class="btn-directions" href="https://maps.app.goo.gl/bES9C1JJKse4wuhv6" target="_blank" rel="noopener">
+    <!-- Directions button -->
+    <a class="btn-maps" href="https://maps.app.goo.gl/xQUMC2uqKxdXRBC48" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24">
         <polygon points="3 11 22 2 13 21 11 13 3 11"/>
       </svg>
-      <span data-i18n="btnDirections">الاتجاهات نحو المتجر</span>
+      <span data-i18n="btnMaps">الاتجاهات نحو الموقع</span>
     </a>
-
-    <div class="address-line">
-      <svg viewBox="0 0 24 24">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-        <circle cx="12" cy="10" r="3"/>
-      </svg>
-      <span data-i18n="address">66, Rue ACH MOHAMED B.SEDDIK Q ROUDANI RDC AP LOC</span>
-    </div>
 
   </div>
 
@@ -978,25 +941,29 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
        GALLERY — images one per line
        ========================================================== -->
   <div class="gallery reveal">
-    <a href="Img1.png" target="_blank" rel="noopener" data-label="المتجر · Store">
-      <img src="Img1.png" alt="Store" loading="lazy"
-           onerror="this.src='https://picsum.photos/id/1060/1400/900'">
+    <a href="Img1.webp" target="_blank" rel="noopener" data-label="بطاقات NFC · NFC Cards">
+      <img src="Img1.webp" alt="NFC Cards" loading="lazy">
     </a>
-    <a href="Img2.png" target="_blank" rel="noopener" data-label="نظارات · Eyewear">
-      <img src="Img2.png" alt="Eyewear" loading="lazy"
-           onerror="this.src='https://picsum.photos/id/1062/1400/900'">
+    <a href="Img2.webp" target="_blank" rel="noopener" data-label="بطاقة أعمال · Business Card">
+      <img src="Img2.webp" alt="Business card" loading="lazy">
     </a>
-    <a href="Img3.png" target="_blank" rel="noopener" data-label="عدسات · Lenses">
-      <img src="Img3.png" alt="Lenses" loading="lazy"
-           onerror="this.src='https://picsum.photos/id/1069/1400/900'">
+    <a href="Img3.webp" target="_blank" rel="noopener" data-label="مراجعة جوجل · Google Review">
+      <img src="Img3.webp" alt="Google review card" loading="lazy">
     </a>
-    <a href="Img4.png" target="_blank" rel="noopener" data-label="قياس النظر · Eye test">
-      <img src="Img4.png" alt="Eye test" loading="lazy"
-           onerror="this.src='https://picsum.photos/id/1074/1400/900'">
+    <a href="Img4.webp" target="_blank" rel="noopener" data-label="وسائل التواصل · Social Media">
+      <img src="Img4.webp" alt="Social media card" loading="lazy">
     </a>
-    <a href="Img5.png" target="_blank" rel="noopener" data-label="معرض النظارات · Collection">
-      <img src="Img5.png" alt="Collection" loading="lazy"
-           onerror="this.src='https://picsum.photos/id/1080/1400/900'">
+    <a href="Img5.webp" target="_blank" rel="noopener" data-label="منيو رقمي · Digital Menu">
+      <img src="Img5.webp" alt="Digital menu card" loading="lazy">
+    </a>
+    <a href="Img6.webp" target="_blank" rel="noopener" data-label="تصميم مخصص · Custom Design">
+      <img src="Img6.webp" alt="Custom design" loading="lazy">
+    </a>
+    <a href="Img7.webp" target="_blank" rel="noopener" data-label="تغليف فاخر · Premium Finish">
+      <img src="Img7.webp" alt="Premium finish" loading="lazy">
+    </a>
+    <a href="Img8.webp" target="_blank" rel="noopener" data-label="كل الأنواع · All Types">
+      <img src="Img8.webp" alt="All NFC card types" loading="lazy">
     </a>
   </div>
 
@@ -1036,7 +1003,7 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
 
   <!-- FOOTER -->
   <footer class="footer">
-    © <span id="year"></span> <b>ابن بطوطة للبصريات</b> — <span data-i18n="rights">جميع الحقوق محفوظة.</span>
+    © <span id="year"></span> <b>Tap NFC</b> — <span data-i18n="rights">جميع الحقوق محفوظة.</span>
   </footer>
 
 </div>
@@ -1063,21 +1030,21 @@ html[dir="rtl"] .location-title{letter-spacing:1px}
    ========================================================== */
 const translations = {
   ar:{
-    store:'ابن بطوطة للبصريات',
-    status:'مفتوح الآن',
-    jobTitle:'Opticien · Optométriste · Contactologiste',
-    slogan:'رؤية أوضح، اختيار أفضل',
-    tagline:'نضع رؤيتكم في مقدمة اهتمامنا، ونوفر لكم خدمات متخصصة في مجال البصريات، من قياس النظر وتصحيحه إلى اختيار النظارات والعدسات اللاصقة المناسبة، مع جودة عالية وخدمة احترافية.',
-    spec1:'👁️ قياس النظر', spec2:'👓 نظارات طبية', spec3:'🕶️ نظارات شمسية',
-    spec4:'🔵 عدسات لاصقة', spec5:'👶 نظارات الأطفال',
-    hours:'الاثنين – السبت · 10:00 – 20:30',
+    store:'Tap NFC',
+    status:'24/24',
+    jobTitle:'بطاقات NFC · حلول ذكية للأعمال',
+    slogan:'بطاقة واحدة… كل معلوماتك',
+    tagline:'نبيع بطاقات NFC الذكية التي تشارك معلوماتك بلمسة واحدة: بطاقات أعمال، مراجعة جوجل، منيو رقمي، وحسابات التواصل الاجتماعي. جودة عالية، تصميم مخصص، وتوصيل سريع.',
+    spec1:'📇 بطاقات NFC', spec2:'💼 بطاقات أعمال', spec3:'⭐ مراجعة جوجل',
+    spec4:'📱 مشاركة فورية', spec5:'🎨 تصميم مخصص',
+    hours:'24/24',
     btnCall:'اتصل بنا',
-    btnWhatsapp:'واتساب', btnWhatsappSub:'استفسار سريع · حجز موعد',
-    btnEmail:'البريد الإلكتروني',
-    btnDirections:'الاتجاهات نحو المتجر',
-    fbPage:'ابن بطوطة للبصريات',
-    locationTitle:'موقع المتجر',
-    address:'66, Rue ACH MOHAMED B.SEDDIK Q ROUDANI RDC AP LOC',
+    btnWhatsapp:'واتساب', btnWhatsappSub:'اطلب بطاقتك · استفسار سريع',
+    fbPage:'Tap NFC',
+    locationTitle:'الموقع',
+    cityName:'طنجة، المغرب',
+    citySub:'التوصيل متاح لجميع المدن',
+    btnMaps:'الاتجاهات نحو الموقع',
     shareTitle:'شارك هذه البطاقة',
     shareSub:'أرسلها لصديق أو قريب بنقرة واحدة.',
     shareBtn:'شارك هذه الصفحة',
@@ -1085,25 +1052,25 @@ const translations = {
     toastCopied:'تم نسخ الرابط!',
     toastShared:'شكرًا على المشاركة!',
     toastError:'تعذر المشاركة',
-    shareText:'اكتشف ابن بطوطة للبصريات — رؤية أوضح، اختيار أفضل',
+    shareText:'اكتشف Tap NFC — بطاقات NFC ذكية، بطاقة واحدة… كل معلوماتك',
     rights:'جميع الحقوق محفوظة.'
   },
   fr:{
-    store:'Ibn Batouta Optique',
-    status:'Ouvert maintenant',
-    jobTitle:'Opticien · Optométriste · Contactologiste',
-    slogan:'Vision plus claire, meilleur choix',
-    tagline:"Nous plaçons votre vision au cœur de nos priorités. Services spécialisés en optique : mesure et correction de la vue, choix de lunettes et lentilles adaptées, avec une qualité supérieure et un service professionnel.",
-    spec1:'👁️ Mesure de vue', spec2:'👓 Lunettes de vue', spec3:'🕶️ Lunettes de soleil',
-    spec4:'🔵 Lentilles de contact', spec5:'👶 Lunettes enfants',
-    hours:'Lundi – Samedi · 10h00 – 20h30',
+    store:'Tap NFC',
+    status:'24/24',
+    jobTitle:'Cartes NFC · Solutions intelligentes',
+    slogan:'Une seule carte… toutes vos infos',
+    tagline:"Nous vendons des cartes NFC intelligentes qui partagent vos informations en un seul tap : cartes de visite, avis Google, menu numérique et réseaux sociaux. Qualité supérieure, design personnalisé et livraison rapide.",
+    spec1:'📇 Cartes NFC', spec2:'💼 Cartes de visite', spec3:'⭐ Avis Google',
+    spec4:'📱 Partage instantané', spec5:'🎨 Design personnalisé',
+    hours:'24/24',
     btnCall:'Appelez-nous',
-    btnWhatsapp:'WhatsApp', btnWhatsappSub:'Devis rapide · Rendez-vous',
-    btnEmail:'Email',
-    btnDirections:'Itinéraire vers la boutique',
-    fbPage:'Ibn Batouta Optique',
-    locationTitle:'Notre boutique',
-    address:'66, Rue ACH MOHAMED B.SEDDIK Q ROUDANI RDC AP LOC',
+    btnWhatsapp:'WhatsApp', btnWhatsappSub:'Commandez · Devis rapide',
+    fbPage:'Tap NFC',
+    locationTitle:'Localisation',
+    cityName:'Tanger, Maroc',
+    citySub:'Livraison dans toutes les villes',
+    btnMaps:'Itinéraire vers le lieu',
     shareTitle:'Partagez cette carte',
     shareSub:'Envoyez-la à un ami en un clic.',
     shareBtn:'Partager cette page',
@@ -1111,25 +1078,25 @@ const translations = {
     toastCopied:'Lien copié !',
     toastShared:'Merci du partage !',
     toastError:'Impossible de partager',
-    shareText:'Découvrez Ibn Batouta Optique — Vision plus claire, meilleur choix',
+    shareText:'Découvrez Tap NFC — Cartes NFC intelligentes',
     rights:'Tous droits réservés.'
   },
   en:{
-    store:'Ibn Batouta Optique',
-    status:'Open now',
-    jobTitle:'Optician · Optometrist · Contactologist',
-    slogan:'Clearer vision, better choice',
-    tagline:'We put your vision at the heart of everything we do. Specialized optical services: eye exams and correction, choice of glasses and contact lenses, with high quality and professional service.',
-    spec1:'👁️ Eye exam', spec2:'👓 Prescription glasses', spec3:'🕶️ Sunglasses',
-    spec4:'🔵 Contact lenses', spec5:'👶 Kids glasses',
-    hours:'Monday – Saturday · 10:00 – 20:30',
+    store:'Tap NFC',
+    status:'24/24',
+    jobTitle:'NFC Cards · Smart Business Solutions',
+    slogan:'One card… all your info',
+    tagline:'We sell smart NFC cards that share your information with a single tap: business cards, Google reviews, digital menus and social media. Premium quality, custom design and fast delivery.',
+    spec1:'📇 NFC Cards', spec2:'💼 Business Cards', spec3:'⭐ Google Reviews',
+    spec4:'📱 Instant Share', spec5:'🎨 Custom Design',
+    hours:'24/24',
     btnCall:'Call us',
-    btnWhatsapp:'WhatsApp', btnWhatsappSub:'Quick quote · Appointment',
-    btnEmail:'Email',
-    btnDirections:'Directions to the store',
-    fbPage:'Ibn Batouta Optique',
-    locationTitle:'Our store',
-    address:'66, Rue ACH MOHAMED B.SEDDIK Q ROUDANI RDC AP LOC',
+    btnWhatsapp:'WhatsApp', btnWhatsappSub:'Order your card · Quick quote',
+    fbPage:'Tap NFC',
+    locationTitle:'Location',
+    cityName:'Tanger, Morocco',
+    citySub:'Delivery to all cities',
+    btnMaps:'Directions to location',
     shareTitle:'Share this card',
     shareSub:'Send it to a friend in one click.',
     shareBtn:'Share this page',
@@ -1137,7 +1104,7 @@ const translations = {
     toastCopied:'Link copied!',
     toastShared:'Thanks for sharing!',
     toastError:'Could not share',
-    shareText:'Discover Ibn Batouta Optique — Clearer vision, better choice',
+    shareText:'Discover Tap NFC — Smart NFC cards',
     rights:'All rights reserved.'
   }
 };
@@ -1160,7 +1127,7 @@ function setLanguage(lang){
     b.classList.toggle('active', b.dataset.lang === lang)
   );
 
-  try{ localStorage.setItem('ibnbatouta_lang', lang); }catch(e){}
+  try{ localStorage.setItem('tapnfc_lang', lang); }catch(e){}
 }
 
 langButtons.forEach(btn =>
@@ -1169,31 +1136,13 @@ langButtons.forEach(btn =>
 
 (function initLang(){
   let saved = 'ar';
-  try{ saved = localStorage.getItem('ibnbatouta_lang') || 'ar'; }catch(e){}
+  try{ saved = localStorage.getItem('tapnfc_lang') || 'ar'; }catch(e){}
   if (!translations[saved]) saved = 'ar';
   setLanguage(saved);
 })();
 
 /* ==========================================================
-   2. IMAGE FALLBACK for local files (Logo.png, Cover.png, Img1-5.png)
-   ========================================================== */
-(function tryLocalImages(){
-  const cover = document.getElementById('cover');
-  const testCover = new Image();
-  testCover.onerror = () => cover.classList.add('no-local');
-  testCover.src = 'Cover.png';
-
-  const logoMark = document.getElementById('logoMark');
-  const testLogo = new Image();
-  testLogo.onload = () => {
-    logoMark.innerHTML = '<img src="Logo.png" alt="Logo">';
-  };
-  testLogo.onerror = () => {}; // keep SVG fallback
-  testLogo.src = 'Logo.png';
-})();
-
-/* ==========================================================
-   3. SCROLL REVEAL
+   2. SCROLL REVEAL
    ========================================================== */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -1210,12 +1159,12 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
 });
 
 /* ==========================================================
-   4. YEAR
+   3. YEAR
    ========================================================== */
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ==========================================================
-   5. CLICK ANIMATION + NAVIGATION
+   4. CLICK ANIMATION + NAVIGATION
    ========================================================== */
 function playClick(el, x, y){
   const rect = el.getBoundingClientRect();
@@ -1242,7 +1191,7 @@ function getClickPoint(e, el){
   return { x, y };
 }
 
-document.querySelectorAll('a.action-btn, a.btn-directions').forEach(link => {
+document.querySelectorAll('a.action-btn, a.btn-maps').forEach(link => {
   link.addEventListener('click', function(e){
     const { x, y } = getClickPoint(e, this);
     playClick(this, x, y);
@@ -1265,7 +1214,7 @@ document.getElementById('saveContact').addEventListener('click', function(e){
 });
 
 /* ==========================================================
-   6. TOAST
+   5. TOAST
    ========================================================== */
 const toastEl   = document.getElementById('toast');
 const toastText = document.getElementById('toastText');
@@ -1279,7 +1228,7 @@ function showToast(msg){
 }
 
 /* ==========================================================
-   7. SHARE LOGIC
+   6. SHARE LOGIC
    ========================================================== */
 function getShareData(){
   const t = translations[currentLang] || translations.ar;
@@ -1349,18 +1298,16 @@ document.querySelectorAll('[data-share]').forEach(btn => {
 });
 
 /* ==========================================================
-   8. vCARD DOWNLOAD
+   7. vCARD DOWNLOAD
    ========================================================== */
 const vCardData = {
-  fullName:'Ibn Batouta Optique',
-  fullNameAr:'ابن بطوطة للبصريات',
-  title:'Opticien · Optométriste · Contactologiste',
-  company:'Ibn Batouta Optique',
-  phone:'+212632503821',
-  email:'mopt.ibnbatouta@gmail.com',
-  address:'66, Rue ACH MOHAMED B.SEDDIK Q ROUDANI RDC AP LOC',
-  instagram:'https://www.instagram.com/optique_ibn_batouta/',
-  facebook:'https://web.facebook.com/p/Ibn-Batouta-Optique-100054318138519/'
+  fullName:'Tap NFC',
+  title:'NFC Cards · Smart Business Solutions',
+  company:'Tap NFC',
+  phone:'+212710076434',
+  address:'Tanger, Maroc',
+  instagram:'https://www.instagram.com/nfc.4all',
+  facebook:'https://web.facebook.com/mohamed.sarrou.2025/'
 };
 
 document.getElementById('saveContact').addEventListener('click', () => {
@@ -1371,7 +1318,6 @@ FN:${vCardData.fullName}
 ORG:${vCardData.company}
 TITLE:${vCardData.title}
 TEL;TYPE=CELL:${vCardData.phone}
-EMAIL:${vCardData.email}
 ADR;TYPE=WORK:;;${vCardData.address}
 X-SOCIALPROFILE;TYPE=instagram:${vCardData.instagram}
 X-SOCIALPROFILE;TYPE=facebook:${vCardData.facebook}
@@ -1381,7 +1327,7 @@ END:VCARD`;
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
   a.href = url;
-  a.download = 'Ibn_Batouta_Optique.vcf';
+  a.download = 'Tap_NFC.vcf';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
