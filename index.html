@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tap NFC — بطاقات NFC ذكية | Tanger</title>
+<meta name="description" content="Tap NFC — بطاقات NFC ذكية تشارك معلوماتك بلمسة واحدة. بطاقات أعمال، مراجعة جوجل، منيو رقمي. طنجة، المغرب.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   1. RESET
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ============================================================
+   2. NFC BRAND THEME
+   ============================================================ */
+:root{
+  /* ==== BRAND — tech teal + cyan ==== */
+  --brand:        #0891b2;
+  --brand-dark:   #0e7490;
+  --brand-light:  #67e8f9;
+  --brand-soft:   #cffafe;
+  --accent:       #06b6d4;
+
+  /* ==== SURFACES ==== */
+  --bg:           #f0fbff;
+  --card-solid:   #ffffff;
+  --card:         #ffffff;
+  --border:       rgba(8,145,178,.14);
+
+  /* ==== TEXT ==== */
+  --text:         #082f49;
+  --muted:        #5b7285;
+
+  /* ==== SHADOWS ==== */
+  --shadow-sm:    0 6px 18px rgba(8,145,178,.10);
+  --shadow:       0 20px 48px rgba(8,145,178,.16);
+  --shadow-lg:    0 30px 70px rgba(8,145,178,.22);
+
+  --radius:       26px;
+  --safe-bottom:  96px;
+}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+body{
+  font-family:'Cairo','Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);
+  background-image:
+    radial-gradient(700px 460px at 12% -8%, rgba(103,232,249,.55), transparent 62%),
+    radial-gradient(620px 460px at 95% 12%, rgba(6,182,212,.18), transparent 62%);
+  background-attachment:fixed;
+  color:var(--text);
+  line-height:1.7;
+  min-height:100vh;
+  overflow-x:hidden;
+  padding-bottom:var(--safe-bottom);
+}
+html[dir="ltr"] body{font-family:'Plus Jakarta Sans','Cairo',sans-serif}
+
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+a,button{-webkit-tap-highlight-color:transparent}
+
+/* Latin font inside RTL for Latin brand names */
+.latin{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.2px}
+
+/* ============================================================
+   3. LANGUAGE SWITCHER
+   ============================================================ */
+.lang-bar{
+  position:sticky;top:0;z-index:200;
+  display:flex;justify-content:center;
+  padding:12px 16px;
+  background:rgba(240,251,255,.85);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.lang-switch{
+  display:inline-flex;gap:4px;padding:4px;
+  border-radius:99px;
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+}
+.lang-switch button{
+  padding:9px 20px;border-radius:99px;
+  font-size:.82rem;font-weight:800;letter-spacing:.4px;
+  color:var(--muted);
+  transition:background .25s,color .25s,box-shadow .25s;
+  user-select:none;
+}
+.lang-switch button:hover{color:var(--brand-dark)}
+.lang-switch button.active{
+  background:linear-gradient(135deg,var(--brand),var(--accent));
+  color:#fff;
+  box-shadow:0 8px 20px rgba(8,145,178,.35);
+}
+
+/* ============================================================
+   4. PAGE
+   ============================================================ */
+.page{
+  width:min(560px,100%);
+  margin:0 auto;
+  padding:18px 16px 30px;
+}
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  background:var(--card-solid);
+  animation:floatIn .9s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes floatIn{
+  from{opacity:0;transform:translateY(38px) scale(.97)}
+  to{opacity:1;transform:none}
+}
+
+.cover{
+  position:relative;
+  height:220px;
+  background:
+    linear-gradient(135deg, rgba(8,145,178,.82), rgba(6,182,212,.65)),
+    url('Cover.png') center/cover;
+  background-blend-mode:multiply;
+}
+.cover::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(240,251,255,.05) 0%,
+    rgba(240,251,255,.35) 55%,
+    rgba(255,255,255,1) 100%);
+}
+
+/* Store logo */
+.store-logo{
+  position:absolute;top:16px;inset-inline-end:16px;z-index:3;
+  display:flex;align-items:center;gap:9px;
+  padding:8px 16px 8px 8px;border-radius:99px;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.9);
+  font-size:.78rem;font-weight:800;letter-spacing:.3px;
+  color:var(--brand-dark);
+  box-shadow:0 10px 26px rgba(8,145,178,.25);
+}
+html[dir="ltr"] .store-logo{padding:8px 16px 8px 8px}
+html[dir="rtl"] .store-logo{padding:8px 8px 8px 16px}
+.store-logo .mark{
+  width:32px;height:32px;flex:none;border-radius:10px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--brand),var(--accent));
+  color:#fff;
+  box-shadow:0 6px 16px rgba(8,145,178,.45);
+  overflow:hidden;
+}
+.store-logo .mark img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+
+/* Status */
+.status{
+  position:absolute;top:16px;inset-inline-start:16px;z-index:3;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:99px;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.9);
+  font-size:.74rem;font-weight:800;letter-spacing:.3px;
+  color:#065f46;
+  box-shadow:0 10px 26px rgba(8,145,178,.20);
+}
+.status .pulse{
+  width:8px;height:8px;border-radius:50%;background:#10b981;
+  box-shadow:0 0 0 0 rgba(16,185,129,.7);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(16,185,129,.7)}
+  70%{box-shadow:0 0 0 12px rgba(16,185,129,0)}
+  100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}
+}
+
+/* Profile */
+.profile{
+  position:relative;margin-top:-72px;
+  padding:0 22px 26px;z-index:4;text-align:center;
+}
+.avatar-wrap{
+  position:relative;width:144px;height:144px;
+  margin:0 auto 16px;
+}
+.avatar{
+  width:100%;height:100%;border-radius:50%;object-fit:cover;
+  border:5px solid #fff;
+  box-shadow:0 18px 44px rgba(8,145,178,.28);
+  background:linear-gradient(135deg,var(--brand),var(--accent));
+}
+/* Verified check */
+.avatar-wrap::after{
+  content:'';
+  position:absolute;bottom:8px;inset-inline-end:8px;
+  width:34px;height:34px;border-radius:50%;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2l-1.5-1.5z'/></svg>") center/16px no-repeat,
+    linear-gradient(135deg,var(--brand),var(--accent));
+  border:3px solid #fff;
+  box-shadow:0 6px 16px rgba(8,145,178,.45);
+}
+
+.name{
+  font-size:clamp(1.55rem,5vw,2rem);
+  font-weight:900;
+  letter-spacing:-.5px;
+  line-height:1.2;
+  color:var(--text);
+}
+.title{
+  display:inline-block;margin-top:8px;
+  padding:5px 15px;border-radius:99px;
+  font-size:.72rem;font-weight:800;letter-spacing:.4px;
+  color:var(--brand-dark);
+  background:var(--brand-soft);
+  border:1px solid rgba(8,145,178,.22);
+  text-align:center;
+}
+.clinic{
+  font-size:.98rem;font-weight:800;
+  color:var(--brand-dark);margin-top:10px;
+}
+.tagline{
+  color:var(--muted);font-size:.92rem;max-width:480px;
+  margin:14px auto 0;
+  line-height:1.8;
+}
+
+/* Specialty chips */
+.specialties{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
+  margin-top:20px;
+}
+.specialties span{
+  font-size:.74rem;font-weight:700;
+  padding:6px 13px;border-radius:99px;
+  background:#fff;border:1px solid var(--border);
+  color:var(--brand-dark);
+  box-shadow:0 3px 10px rgba(8,145,178,.07);
+}
+
+/* Hours box */
+.hours-box{
+  display:inline-flex;align-items:center;gap:9px;
+  margin-top:18px;
+  padding:9px 18px;
+  border-radius:99px;
+  background:linear-gradient(135deg,rgba(8,145,178,.10),rgba(6,182,212,.06));
+  border:1px solid rgba(8,145,178,.20);
+  font-size:.82rem;font-weight:800;
+  color:var(--brand-dark);
+}
+.hours-box svg{
+  width:16px;height:16px;flex:none;
+  fill:none;stroke:var(--brand);stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+
+/* ============================================================
+   6. ACTION BUTTONS
+   ============================================================ */
+.action-list{
+  display:flex;flex-direction:column;gap:12px;margin-top:32px;
+}
+
+.action-btn{
+  position:relative;
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:17px 20px;border-radius:18px;
+  background:var(--brand-bg, var(--brand));
+  color:#fff;
+  border:1px solid rgba(255,255,255,.22);
+  overflow:hidden;isolation:isolate;user-select:none;
+  min-height:84px;
+  box-shadow:
+    0 14px 30px -12px var(--brand-glow, var(--brand)),
+    inset 0 1px 0 rgba(255,255,255,.25);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),
+             box-shadow .35s ease,
+             filter .3s ease;
+}
+.action-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,
+    rgba(255,255,255,.22) 0%,
+    rgba(255,255,255,.03) 45%,
+    rgba(0,0,0,.08) 100%);
+  z-index:1;pointer-events:none;
+}
+.action-btn:hover{
+  transform:translateY(-6px) scale(1.015);
+  box-shadow:
+    0 26px 50px -12px var(--brand-glow, var(--brand)),
+    0 0 46px -8px var(--brand-glow, var(--brand)),
+    inset 0 1px 0 rgba(255,255,255,.32);
+  filter:brightness(1.07);
+}
+.action-btn:hover .ico{transform:scale(1.12) rotate(-6deg)}
+.action-btn:hover .arrow{
+  transform:translateX(5px) scale(1.1);
+  background:rgba(255,255,255,.34);
+}
+html[dir="rtl"] .action-btn:hover .arrow{
+  transform:translateX(-5px) scale(1.1);
+}
+.action-btn:hover .txt b{text-shadow:0 0 18px rgba(255,255,255,.75)}
+
+.action-btn.pressed{animation:pressPop .42s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pressPop{
+  0%{transform:scale(.96)}
+  55%{transform:scale(1.025)}
+  100%{transform:scale(1)}
+}
+.action-btn.pressed .ico{animation:iconPop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes iconPop{
+  0%{transform:scale(.82)}
+  60%{transform:scale(1.16)}
+  100%{transform:scale(1)}
+}
+
+.ripple{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(255,255,255,.7) 0%,
+    rgba(255,255,255,.22) 40%,
+    rgba(255,255,255,0) 70%);
+  transform:scale(0);
+  animation:rippleGrow .65s cubic-bezier(.22,1,.36,1) forwards;
+  pointer-events:none;z-index:2;
+}
+@keyframes rippleGrow{to{transform:scale(2.6);opacity:0}}
+
+.action-btn .ico{
+  position:relative;z-index:3;
+  width:50px;height:50px;flex:none;border-radius:15px;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.34);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  color:#fff;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.action-btn .ico svg{width:23px;height:23px;fill:#fff}
+.action-btn .ico svg[data-stroke]{
+  fill:none;stroke:#fff;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+
+.action-btn .txt{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  z-index:3;text-align:center;
+  max-width:calc(100% - 150px);
+  pointer-events:none;
+}
+.action-btn .txt b{
+  display:block;font-size:1rem;font-weight:800;
+  letter-spacing:-.2px;line-height:1.25;color:#fff;
+  white-space:nowrap;
+  transition:text-shadow .3s;
+}
+.action-btn .txt span{
+  display:block;font-size:.78rem;
+  color:rgba(255,255,255,.9);
+  white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis;margin-top:2px;
+}
+
+.action-btn .arrow{
+  position:relative;z-index:3;flex:none;
+  width:32px;height:32px;
+  display:grid;place-items:center;border-radius:50%;
+  background:rgba(255,255,255,.22);
+  color:#fff;
+  transition:background .3s,transform .35s cubic-bezier(.22,1,.36,1);
+}
+html[dir="rtl"] .action-btn .arrow svg{transform:scaleX(-1)}
+.action-btn .arrow svg{
+  width:15px;height:15px;
+  fill:none;stroke:currentColor;
+  stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
+}
+
+/* ============================================================
+   7. BRAND COLOURS PER BUTTON
+   ============================================================ */
+.b-tel{
+  --brand:#0891b2;--brand-glow:#0891b2;
+  --brand-bg:linear-gradient(135deg,#22d3ee 0%,#0891b2 60%,#0e7490 100%);
+}
+.b-wa{
+  --brand:#25d366;--brand-glow:#25d366;
+  --brand-bg:linear-gradient(135deg,#4ade80 0%,#16a34a 100%);
+}
+.b-ig{
+  --brand:#e1306c;--brand-glow:#e1306c;
+  --brand-bg:linear-gradient(45deg,
+    #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+}
+.b-fb{
+  --brand:#1877f2;--brand-glow:#1877f2;
+  --brand-bg:linear-gradient(135deg,#4293ff 0%,#0c5dc7 100%);
+}
+.b-maps{
+  --brand:#ea4335;--brand-glow:#ea4335;
+  --brand-bg:linear-gradient(135deg,#f87171 0%,#dc2626 100%);
+}
+
+/* ============================================================
+   8. LOCATION BLOCK
+   ============================================================ */
+.location-block{
+  margin-top:32px;
+  padding:18px;
+  border-radius:24px;
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.location-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  font-size:.78rem;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--brand-dark);
+  margin-bottom:14px;
+}
+html[dir="rtl"] .location-title{letter-spacing:1px}
+.location-title svg{
+  width:16px;height:16px;
+  fill:none;stroke:var(--brand);
+  stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+
+/* City card */
+.loc-card{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 18px;border-radius:18px;
+  background:linear-gradient(135deg,rgba(8,145,178,.10),rgba(6,182,212,.05));
+  border:1px solid rgba(8,145,178,.18);
+}
+.loc-card .pin{
+  width:46px;height:46px;flex:none;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--brand),var(--accent));
+  box-shadow:0 10px 24px rgba(8,145,178,.38);
+}
+.loc-card .pin svg{
+  width:22px;height:22px;
+  fill:none;stroke:#fff;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.loc-card b{
+  display:block;font-size:1rem;font-weight:900;
+  color:var(--text);line-height:1.3;
+}
+.loc-card small{
+  display:block;font-size:.8rem;font-weight:600;
+  color:var(--muted);margin-top:3px;
+}
+
+/* Directions button */
+.btn-maps{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;gap:11px;
+  width:100%;
+  margin-top:14px;
+  padding:17px 24px;
+  border-radius:16px;
+  font-size:.98rem;font-weight:800;letter-spacing:.2px;
+  color:#fff;
+  background:linear-gradient(135deg,#f87171 0%,#dc2626 100%);
+  box-shadow:
+    0 14px 30px -12px #ea4335,
+    inset 0 1px 0 rgba(255,255,255,.25);
+  overflow:hidden;isolation:isolate;user-select:none;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),
+             box-shadow .35s ease,
+             filter .25s ease;
+}
+.btn-maps::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,
+    rgba(255,255,255,.22) 0%,
+    rgba(255,255,255,.03) 50%,
+    rgba(0,0,0,.08) 100%);
+  z-index:1;pointer-events:none;
+}
+.btn-maps:hover{
+  transform:translateY(-4px) scale(1.015);
+  box-shadow:
+    0 24px 50px -12px #ea4335,
+    0 0 44px -8px #ea4335,
+    inset 0 1px 0 rgba(255,255,255,.32);
+  filter:brightness(1.07);
+}
+.btn-maps.pressed{animation:pressPop .42s cubic-bezier(.34,1.56,.64,1)}
+.btn-maps.pressed svg{animation:iconPop .45s cubic-bezier(.34,1.56,.64,1)}
+.btn-maps svg{
+  width:20px;height:20px;
+  fill:none;stroke:#fff;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;
+  position:relative;z-index:2;
+}
+.btn-maps span{position:relative;z-index:2}
+
+/* ============================================================
+   9. GALLERY — each image on its own line
+   ============================================================ */
+.gallery{
+  display:flex;flex-direction:column;gap:14px;margin-top:32px;
+}
+.gallery a{
+  position:relative;display:block;width:100%;
+  aspect-ratio:16/10;
+  border-radius:20px;overflow:hidden;
+  border:1px solid var(--border);
+  background:#fff;
+  box-shadow:var(--shadow-sm);
+  transition:transform .45s cubic-bezier(.22,1,.36,1),
+             box-shadow .45s ease,
+             border-color .3s ease;
+}
+.gallery a:hover{
+  transform:translateY(-6px) scale(1.012);
+  border-color:var(--brand);
+  box-shadow:
+    0 24px 48px -12px rgba(8,145,178,.42),
+    0 0 0 1px rgba(8,145,178,.35);
+}
+.gallery img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .7s cubic-bezier(.22,1,.36,1),
+             filter .4s ease;
+}
+.gallery a:hover img{
+  transform:scale(1.06);
+  filter:brightness(1.06) saturate(1.08);
+}
+.gallery a::after{
+  content:attr(data-label);
+  position:absolute;inset-inline-start:14px;bottom:14px;z-index:2;
+  padding:6px 14px;border-radius:99px;
+  font-size:.72rem;font-weight:800;letter-spacing:.5px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--brand),var(--accent));
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.28);
+  opacity:0;transform:translateY(8px);
+  transition:opacity .35s ease, transform .35s ease;
+}
+.gallery a:hover::after{opacity:1;transform:translateY(0)}
+
+/* ============================================================
+   10. SHARE SECTION
+   ============================================================ */
+.share-section{
+  margin-top:32px;
+  padding:26px 22px;
+  border-radius:22px;
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+  text-align:center;
+}
+.share-section h3{
+  font-size:1.1rem;
+  font-weight:800;
+  color:var(--text);
+  margin-bottom:6px;
+  letter-spacing:-.2px;
+}
+.share-section p{
+  font-size:.85rem;
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+.btn-share{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;gap:11px;
+  width:100%;padding:18px 24px;border-radius:18px;
+  font-size:1rem;font-weight:800;letter-spacing:.3px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--brand),var(--accent));
+  box-shadow:0 18px 40px rgba(8,145,178,.45);
+  overflow:hidden;isolation:isolate;user-select:none;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),
+             box-shadow .3s ease,
+             filter .25s ease;
+}
+.btn-share::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,
+    rgba(255,255,255,.28) 0%,
+    rgba(255,255,255,.04) 50%,
+    rgba(0,0,0,.06) 100%);
+  z-index:1;pointer-events:none;
+}
+.btn-share:hover{
+  transform:translateY(-4px) scale(1.01);
+  box-shadow:0 26px 56px rgba(8,145,178,.60);
+  filter:brightness(1.06);
+}
+.btn-share.pressed{animation:pressPop .42s cubic-bezier(.34,1.56,.64,1)}
+.btn-share.pressed svg{animation:iconPop .45s cubic-bezier(.34,1.56,.64,1)}
+
+.btn-share svg{
+  width:20px;height:20px;fill:none;stroke:#fff;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  position:relative;z-index:2;
+}
+.btn-share span{position:relative;z-index:2}
+
+.share-row{
+  display:flex;justify-content:center;gap:10px;
+  margin-top:14px;flex-wrap:wrap;
+}
+.share-row button{
+  width:46px;height:46px;border-radius:14px;
+  display:grid;place-items:center;
+  background:#fff;border:1px solid var(--border);
+  color:var(--muted);
+  transition:transform .3s cubic-bezier(.22,1,.36,1),
+             border-color .3s,background .3s,color .3s;
+  box-shadow:0 4px 12px rgba(8,145,178,.08);
+}
+.share-row button:hover{
+  transform:translateY(-4px) scale(1.08);
+  color:#fff;
+}
+.share-row button svg{width:20px;height:20px;fill:currentColor}
+.share-row .sh-wa:hover{background:#25d366;border-color:#25d366}
+.share-row .sh-fb:hover{background:#1877f2;border-color:#1877f2}
+.share-row .sh-x:hover{background:#0f172a;border-color:#0f172a}
+.share-row .sh-copy:hover{background:var(--brand);border-color:var(--brand)}
+
+/* ============================================================
+   11. FIXED SAVE BUTTON
+   ============================================================ */
+.save-dock{
+  position:fixed;inset-inline:0;bottom:0;z-index:300;
+  padding:14px 16px calc(14px + env(safe-area-inset-bottom));
+  background:linear-gradient(180deg,
+    rgba(240,251,255,0) 0%,
+    rgba(240,251,255,.92) 30%,
+    #f0fbff 100%);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  pointer-events:none;
+}
+.save-dock .inner{
+  width:min(560px,100%);
+  margin:0 auto;pointer-events:auto;
+}
+
+.btn-save{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;gap:11px;
+  width:100%;padding:18px 24px;border-radius:18px;
+  font-size:1rem;font-weight:800;letter-spacing:.3px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--brand),var(--accent));
+  box-shadow:0 18px 40px rgba(8,145,178,.45);
+  overflow:hidden;isolation:isolate;user-select:none;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),
+             box-shadow .3s ease,
+             filter .25s ease;
+}
+.btn-save::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,
+    rgba(255,255,255,.28) 0%,
+    rgba(255,255,255,.04) 50%,
+    rgba(0,0,0,.06) 100%);
+  z-index:1;pointer-events:none;
+}
+.btn-save:hover{
+  transform:translateY(-4px) scale(1.01);
+  box-shadow:0 26px 56px rgba(8,145,178,.60);
+  filter:brightness(1.06);
+}
+.btn-save.pressed{animation:pressPop .42s cubic-bezier(.34,1.56,.64,1)}
+.btn-save.pressed svg{animation:iconPop .45s cubic-bezier(.34,1.56,.64,1)}
+
+.btn-save svg{
+  width:20px;height:20px;fill:none;stroke:#fff;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  position:relative;z-index:2;
+}
+.btn-save span{position:relative;z-index:2}
+
+/* ============================================================
+   12. TOAST
+   ============================================================ */
+.toast{
+  position:fixed;left:50%;bottom:110px;
+  transform:translate(-50%, 30px);
+  z-index:400;
+  display:flex;align-items:center;gap:10px;
+  padding:13px 22px;border-radius:99px;
+  background:linear-gradient(135deg,var(--brand),var(--accent));
+  color:#fff;
+  font-size:.88rem;font-weight:800;
+  box-shadow:0 18px 40px rgba(8,145,178,.5);
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1);
+}
+.toast.show{opacity:1;transform:translate(-50%, 0)}
+.toast svg{
+  width:18px;height:18px;
+  fill:none;stroke:#fff;stroke-width:2.4;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+
+/* ============================================================
+   13. FOOTER
+   ============================================================ */
+.footer{
+  text-align:center;margin-top:24px;
+  padding-top:20px;border-top:1px solid var(--border);
+  font-size:.76rem;color:var(--muted);
+}
+.footer b{color:var(--brand-dark)}
+
+/* ============================================================
+   14. SCROLL REVEAL
+   ============================================================ */
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity .8s cubic-bezier(.22,1,.36,1),
+             transform .8s cubic-bezier(.22,1,.36,1);
+}
+.reveal.in{opacity:1;transform:none}
+
+/* ============================================================
+   15. RESPONSIVE
+   ============================================================ */
+@media(max-width:520px){
+  :root{--safe-bottom:92px}
+  .page{padding:14px 12px 30px}
+  .cover{height:190px}
+  .profile{padding:0 16px 22px;margin-top:-62px}
+  .avatar-wrap{width:122px;height:122px}
+  .action-btn{padding:15px 16px;border-radius:16px;min-height:78px}
+  .action-btn .ico{width:46px;height:46px}
+  .action-btn .txt b{font-size:.95rem}
+  .action-btn .txt span{font-size:.72rem}
+  .action-btn .txt{max-width:calc(100% - 130px)}
+  .location-block{padding:14px}
+  .gallery a{aspect-ratio:4/3}
+  .btn-save{padding:16px 20px;font-size:.95rem}
+  .btn-share{padding:16px 20px;font-size:.95rem}
+  .btn-maps{padding:15px 18px;font-size:.92rem}
+  .share-section{padding:22px 18px}
+  .lang-switch button{padding:8px 15px;font-size:.75rem}
+  .toast{bottom:100px;font-size:.82rem;padding:11px 18px}
+  .hours-box{font-size:.76rem;padding:8px 14px}
+}
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE SWITCHER -->
+<div class="lang-bar">
+  <div class="lang-switch" role="tablist" aria-label="Language">
+    <button data-lang="ar" class="active" role="tab">العربية</button>
+    <button data-lang="fr" role="tab">Français</button>
+    <button data-lang="en" role="tab">English</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ==========================================================
+       HERO
+       ========================================================== -->
+  <header class="hero">
+    <div class="cover" id="cover">
+      <div class="store-logo">
+        <span class="mark" id="logoMark">
+          <img src="Logo.png" alt="Tap NFC Logo">
+        </span>
+        <span data-i18n="store">Tap NFC</span>
+      </div>
+
+      <span class="status">
+        <span class="pulse"></span>
+        <span data-i18n="status">24/24</span>
+      </span>
+    </div>
+
+    <div class="profile">
+      <div class="avatar-wrap">
+        <img class="avatar" src="Logo.png" alt="Tap NFC" loading="lazy">
+      </div>
+
+      <h1 class="name" data-i18n="store">Tap NFC</h1>
+      <p class="title" data-i18n="jobTitle">بطاقات NFC · حلول ذكية للأعمال</p>
+      <p class="clinic" data-i18n="slogan">بطاقة واحدة… كل معلوماتك</p>
+
+      <p class="tagline" data-i18n="tagline">
+        نبيع بطاقات NFC الذكية التي تشارك معلوماتك بلمسة واحدة: بطاقات أعمال، مراجعة جوجل، منيو رقمي، وحسابات التواصل الاجتماعي. جودة عالية، تصميم مخصص، وتوصيل سريع.
+      </p>
+
+      <div class="specialties">
+        <span data-i18n="spec1">📇 بطاقات NFC</span>
+        <span data-i18n="spec2">💼 بطاقات أعمال</span>
+        <span data-i18n="spec3">⭐ مراجعة جوجل</span>
+        <span data-i18n="spec4">📱 مشاركة فورية</span>
+        <span data-i18n="spec5">🎨 تصميم مخصص</span>
+      </div>
+
+      <!-- Hours -->
+      <div class="hours-box">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span data-i18n="hours">24/24</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       ACTION BUTTONS
+       ========================================================== -->
+  <div class="action-list">
+
+    <!-- Call -->
+    <a class="action-btn b-tel" href="tel:+212710076434">
+      <span class="ico">
+        <svg data-stroke viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </span>
+      <span class="txt">
+        <b data-i18n="btnCall">اتصل بنا</b>
+        <span class="latin">0710076434</span>
+      </span>
+      <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+    </a>
+
+    <!-- WhatsApp -->
+    <a class="action-btn b-wa" href="https://wa.me/212710076434" target="_blank" rel="noopener">
+      <span class="ico">
+        <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.02c0-5.19 4.23-9.41 9.42-9.41 2.51 0 4.88.98 6.66 2.76a9.35 9.35 0 0 1 2.76 6.66c0 5.19-4.23 9.42-9.43 9.42zM20.5 3.49A11.8 11.8 0 0 0 12.05 0C5.5 0 .17 5.33.17 11.88c0 2.09.55 4.13 1.59 5.93L.07 24l6.34-1.66a11.85 11.85 0 0 0 5.64 1.44h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.17-1.24-6.15-3.44-8.41z"/></svg>
+      </span>
+      <span class="txt">
+        <b data-i18n="btnWhatsapp">واتساب</b>
+        <span data-i18n="btnWhatsappSub">اطلب بطاقتك · استفسار سريع</span>
+      </span>
+      <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+    </a>
+
+    <!-- Instagram -->
+    <a class="action-btn b-ig" href="https://www.instagram.com/nfc.4all" target="_blank" rel="noopener">
+      <span class="ico">
+        <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.85a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+      </span>
+      <span class="txt">
+        <b>Instagram</b>
+        <span class="latin">@nfc.4all</span>
+      </span>
+      <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+    </a>
+
+    <!-- Facebook -->
+    <a class="action-btn b-fb" href="https://web.facebook.com/mohamed.sarrou.2025/" target="_blank" rel="noopener">
+      <span class="ico">
+        <svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+      </span>
+      <span class="txt">
+        <b>Facebook</b>
+        <span data-i18n="fbPage">Tap NFC</span>
+      </span>
+      <span class="arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+    </a>
+
+  </div>
+
+  <!-- ==========================================================
+       LOCATION BLOCK — city + map button
+       ========================================================== -->
+  <div class="location-block reveal">
+
+    <h2 class="location-title">
+      <svg viewBox="0 0 24 24">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      <span data-i18n="locationTitle">الموقع</span>
+    </h2>
+
+    <div class="loc-card">
+      <span class="pin">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </span>
+      <span>
+        <b data-i18n="cityName">طنجة، المغرب</b>
+        <small data-i18n="citySub">التوصيل متاح لجميع المدن</small>
+      </span>
+    </div>
+
+    <!-- Directions button -->
+    <a class="btn-maps" href="https://maps.app.goo.gl/xQUMC2uqKxdXRBC48" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24">
+        <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+      </svg>
+      <span data-i18n="btnMaps">الاتجاهات نحو الموقع</span>
+    </a>
+
+  </div>
+
+  <!-- ==========================================================
+       GALLERY — four images, one per line
+       ========================================================== -->
+  <div class="gallery reveal">
+    <a href="img1.webp" target="_blank" rel="noopener" data-label="بطاقات NFC · NFC Cards">
+      <img src="img1.webp" alt="NFC Cards" loading="lazy">
+    </a>
+    <a href="img2.webp" target="_blank" rel="noopener" data-label="بطاقة أعمال · Business Card">
+      <img src="img2.webp" alt="Business card" loading="lazy">
+    </a>
+    <a href="img3.webp" target="_blank" rel="noopener" data-label="مراجعة جوجل · Google Review">
+      <img src="img3.webp" alt="Google review card" loading="lazy">
+    </a>
+    <a href="img4.webp" target="_blank" rel="noopener" data-label="وسائل التواصل · Social Media">
+      <img src="img4.webp" alt="Social media card" loading="lazy">
+    </a>
+  </div>
+
+  <!-- ==========================================================
+       SHARE SECTION
+       ========================================================== -->
+  <section class="share-section reveal">
+    <h3 data-i18n="shareTitle">شارك هذه البطاقة</h3>
+    <p data-i18n="shareSub">أرسلها لصديق أو قريب بنقرة واحدة.</p>
+
+    <button class="btn-share" id="shareBtn" type="button">
+      <svg viewBox="0 0 24 24">
+        <circle cx="18" cy="5" r="3"/>
+        <circle cx="6" cy="12" r="3"/>
+        <circle cx="18" cy="19" r="3"/>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+      </svg>
+      <span data-i18n="shareBtn">شارك هذه الصفحة</span>
+    </button>
+
+    <div class="share-row">
+      <button class="sh-wa" data-share="whatsapp" aria-label="Share on WhatsApp" title="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.02c0-5.19 4.23-9.41 9.42-9.41 2.51 0 4.88.98 6.66 2.76a9.35 9.35 0 0 1 2.76 6.66c0 5.19-4.23 9.42-9.43 9.42zM20.5 3.49A11.8 11.8 0 0 0 12.05 0C5.5 0 .17 5.33.17 11.88c0 2.09.55 4.13 1.59 5.93L.07 24l6.34-1.66a11.85 11.85 0 0 0 5.64 1.44h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.17-1.24-6.15-3.44-8.41z"/></svg>
+      </button>
+      <button class="sh-fb" data-share="facebook" aria-label="Share on Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+      </button>
+      <button class="sh-x" data-share="x" aria-label="Share on X" title="X / Twitter">
+        <svg viewBox="0 0 24 24"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41z"/></svg>
+      </button>
+      <button class="sh-copy" data-share="copy" aria-label="Copy link" title="Copy link">
+        <svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    © <span id="year"></span> <b>Tap NFC</b> — <span data-i18n="rights">جميع الحقوق محفوظة.</span>
+  </footer>
+
+</div>
+
+<!-- FIXED SAVE CONTACT BUTTON -->
+<div class="save-dock">
+  <div class="inner">
+    <button class="btn-save" id="saveContact">
+      <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      <span data-i18n="saveContact">حفظ جهة الاتصال</span>
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toastText">تم نسخ الرابط!</span>
+</div>
+
+<script>
+/* ==========================================================
+   1. TRANSLATIONS
+   ========================================================== */
+const translations = {
+  ar:{
+    store:'Tap NFC',
+    status:'24/24',
+    jobTitle:'بطاقات NFC · حلول ذكية للأعمال',
+    slogan:'بطاقة واحدة… كل معلوماتك',
+    tagline:'نبيع بطاقات NFC الذكية التي تشارك معلوماتك بلمسة واحدة: بطاقات أعمال، مراجعة جوجل، منيو رقمي، وحسابات التواصل الاجتماعي. جودة عالية، تصميم مخصص، وتوصيل سريع.',
+    spec1:'📇 بطاقات NFC', spec2:'💼 بطاقات أعمال', spec3:'⭐ مراجعة جوجل',
+    spec4:'📱 مشاركة فورية', spec5:'🎨 تصميم مخصص',
+    hours:'24/24',
+    btnCall:'اتصل بنا',
+    btnWhatsapp:'واتساب', btnWhatsappSub:'اطلب بطاقتك · استفسار سريع',
+    fbPage:'Tap NFC',
+    locationTitle:'الموقع',
+    cityName:'طنجة، المغرب',
+    citySub:'التوصيل متاح لجميع المدن',
+    btnMaps:'الاتجاهات نحو الموقع',
+    shareTitle:'شارك هذه البطاقة',
+    shareSub:'أرسلها لصديق أو قريب بنقرة واحدة.',
+    shareBtn:'شارك هذه الصفحة',
+    saveContact:'حفظ جهة الاتصال',
+    toastCopied:'تم نسخ الرابط!',
+    toastShared:'شكرًا على المشاركة!',
+    toastError:'تعذر المشاركة',
+    shareText:'اكتشف Tap NFC — بطاقات NFC ذكية، بطاقة واحدة… كل معلوماتك',
+    rights:'جميع الحقوق محفوظة.'
+  },
+  fr:{
+    store:'Tap NFC',
+    status:'24/24',
+    jobTitle:'Cartes NFC · Solutions intelligentes',
+    slogan:'Une seule carte… toutes vos infos',
+    tagline:"Nous vendons des cartes NFC intelligentes qui partagent vos informations en un seul tap : cartes de visite, avis Google, menu numérique et réseaux sociaux. Qualité supérieure, design personnalisé et livraison rapide.",
+    spec1:'📇 Cartes NFC', spec2:'💼 Cartes de visite', spec3:'⭐ Avis Google',
+    spec4:'📱 Partage instantané', spec5:'🎨 Design personnalisé',
+    hours:'24/24',
+    btnCall:'Appelez-nous',
+    btnWhatsapp:'WhatsApp', btnWhatsappSub:'Commandez · Devis rapide',
+    fbPage:'Tap NFC',
+    locationTitle:'Localisation',
+    cityName:'Tanger, Maroc',
+    citySub:'Livraison dans toutes les villes',
+    btnMaps:'Itinéraire vers le lieu',
+    shareTitle:'Partagez cette carte',
+    shareSub:'Envoyez-la à un ami en un clic.',
+    shareBtn:'Partager cette page',
+    saveContact:'Enregistrer le Contact',
+    toastCopied:'Lien copié !',
+    toastShared:'Merci du partage !',
+    toastError:'Impossible de partager',
+    shareText:'Découvrez Tap NFC — Cartes NFC intelligentes',
+    rights:'Tous droits réservés.'
+  },
+  en:{
+    store:'Tap NFC',
+    status:'24/24',
+    jobTitle:'NFC Cards · Smart Business Solutions',
+    slogan:'One card… all your info',
+    tagline:'We sell smart NFC cards that share your information with a single tap: business cards, Google reviews, digital menus and social media. Premium quality, custom design and fast delivery.',
+    spec1:'📇 NFC Cards', spec2:'💼 Business Cards', spec3:'⭐ Google Reviews',
+    spec4:'📱 Instant Share', spec5:'🎨 Custom Design',
+    hours:'24/24',
+    btnCall:'Call us',
+    btnWhatsapp:'WhatsApp', btnWhatsappSub:'Order your card · Quick quote',
+    fbPage:'Tap NFC',
+    locationTitle:'Location',
+    cityName:'Tanger, Morocco',
+    citySub:'Delivery to all cities',
+    btnMaps:'Directions to location',
+    shareTitle:'Share this card',
+    shareSub:'Send it to a friend in one click.',
+    shareBtn:'Share this page',
+    saveContact:'Save to Contacts',
+    toastCopied:'Link copied!',
+    toastShared:'Thanks for sharing!',
+    toastError:'Could not share',
+    shareText:'Discover Tap NFC — Smart NFC cards',
+    rights:'All rights reserved.'
+  }
+};
+
+let currentLang = 'ar';
+const langButtons = document.querySelectorAll('.lang-switch button');
+
+function setLanguage(lang){
+  const t = translations[lang] || translations.ar;
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir  = (lang === 'ar') ? 'rtl' : 'ltr';
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k]) el.textContent = t[k];
+  });
+
+  langButtons.forEach(b =>
+    b.classList.toggle('active', b.dataset.lang === lang)
+  );
+
+  try{ localStorage.setItem('tapnfc_lang', lang); }catch(e){}
+}
+
+langButtons.forEach(btn =>
+  btn.addEventListener('click', () => setLanguage(btn.dataset.lang))
+);
+
+(function initLang(){
+  let saved = 'ar';
+  try{ saved = localStorage.getItem('tapnfc_lang') || 'ar'; }catch(e){}
+  if (!translations[saved]) saved = 'ar';
+  setLanguage(saved);
+})();
+
+/* ==========================================================
+   2. SCROLL REVEAL
+   ========================================================== */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = (i * 70) + 'ms';
+  io.observe(el);
+});
+
+/* ==========================================================
+   3. YEAR
+   ========================================================== */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ==========================================================
+   4. CLICK ANIMATION + NAVIGATION
+   ========================================================== */
+function playClick(el, x, y){
+  const rect = el.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = (x - rect.left - size/2) + 'px';
+  ripple.style.top  = (y - rect.top  - size/2) + 'px';
+  el.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 680);
+
+  el.classList.remove('pressed');
+  void el.offsetWidth;
+  el.classList.add('pressed');
+  setTimeout(() => el.classList.remove('pressed'), 460);
+}
+
+function getClickPoint(e, el){
+  const rect = el.getBoundingClientRect();
+  const x = (e.clientX != null && e.clientX !== 0) ? e.clientX : rect.left + rect.width/2;
+  const y = (e.clientY != null && e.clientY !== 0) ? e.clientY : rect.top  + rect.height/2;
+  return { x, y };
+}
+
+document.querySelectorAll('a.action-btn, a.btn-maps').forEach(link => {
+  link.addEventListener('click', function(e){
+    const { x, y } = getClickPoint(e, this);
+    playClick(this, x, y);
+
+    const href   = this.getAttribute('href');
+    const target = this.getAttribute('target');
+    if (!href || href.startsWith('#')) return;
+
+    e.preventDefault();
+    setTimeout(() => {
+      if (target === '_blank') window.open(href, '_blank', 'noopener');
+      else window.location.href = href;
+    }, 240);
+  });
+});
+
+document.getElementById('saveContact').addEventListener('click', function(e){
+  const { x, y } = getClickPoint(e, this);
+  playClick(this, x, y);
+});
+
+/* ==========================================================
+   5. TOAST
+   ========================================================== */
+const toastEl   = document.getElementById('toast');
+const toastText = document.getElementById('toastText');
+let toastTimer  = null;
+
+function showToast(msg){
+  toastText.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2600);
+}
+
+/* ==========================================================
+   6. SHARE LOGIC
+   ========================================================== */
+function getShareData(){
+  const t = translations[currentLang] || translations.ar;
+  return { title: t.store, text: t.shareText, url: window.location.href };
+}
+
+async function nativeShare(){
+  const data = getShareData();
+  if (navigator.share){
+    try{
+      await navigator.share(data);
+      showToast(translations[currentLang].toastShared);
+      return true;
+    }catch(err){
+      if (err && err.name === 'AbortError') return true;
+    }
+  }
+  return false;
+}
+
+async function copyLink(){
+  const url = window.location.href;
+  try{
+    if (navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(url);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = url;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    showToast(translations[currentLang].toastCopied);
+    return true;
+  }catch(e){
+    showToast(translations[currentLang].toastError);
+    return false;
+  }
+}
+
+document.getElementById('shareBtn').addEventListener('click', async function(e){
+  const { x, y } = getClickPoint(e, this);
+  playClick(this, x, y);
+
+  const shared = await nativeShare();
+  if (!shared) await copyLink();
+});
+
+document.querySelectorAll('[data-share]').forEach(btn => {
+  btn.addEventListener('click', function(e){
+    const type = this.dataset.share;
+    const url  = encodeURIComponent(window.location.href);
+    const txt  = encodeURIComponent((translations[currentLang] || translations.ar).shareText);
+
+    if (type === 'copy'){ copyLink(); return; }
+
+    let shareUrl = '';
+    if (type === 'whatsapp') shareUrl = `https://wa.me/?text=${txt}%20${url}`;
+    if (type === 'facebook') shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+    if (type === 'x')        shareUrl = `https://twitter.com/intent/tweet?text=${txt}&url=${url}`;
+
+    if (shareUrl) window.open(shareUrl, '_blank', 'noopener,width=600,height=600');
+  });
+});
+
+/* ==========================================================
+   7. vCARD DOWNLOAD
+   ========================================================== */
+const vCardData = {
+  fullName:'Tap NFC',
+  title:'NFC Cards · Smart Business Solutions',
+  company:'Tap NFC',
+  phone:'+212710076434',
+  address:'Tanger, Maroc',
+  instagram:'https://www.instagram.com/nfc.4all',
+  facebook:'https://web.facebook.com/mohamed.sarrou.2025/'
+};
+
+document.getElementById('saveContact').addEventListener('click', () => {
+  const v = `BEGIN:VCARD
+VERSION:3.0
+N:;${vCardData.fullName};;;
+FN:${vCardData.fullName}
+ORG:${vCardData.company}
+TITLE:${vCardData.title}
+TEL;TYPE=CELL:${vCardData.phone}
+ADR;TYPE=WORK:;;${vCardData.address}
+X-SOCIALPROFILE;TYPE=instagram:${vCardData.instagram}
+X-SOCIALPROFILE;TYPE=facebook:${vCardData.facebook}
+END:VCARD`;
+
+  const blob = new Blob([v], { type:'text/vcard;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url;
+  a.download = 'Tap_NFC.vcf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
